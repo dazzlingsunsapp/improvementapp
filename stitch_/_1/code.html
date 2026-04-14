@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+
+<html lang="ja"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&amp;family=Lexend:wght@300;400;500;600;700;800;900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .sunburst-bg {
+            background-image: radial-gradient(circle at top right, rgba(255, 122, 35, 0.08) 0%, transparent 60%);
+        }
+        .glass-panel {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .coach-only-badge {
+            font-size: 8px;
+            padding: 1px 6px;
+            background-color: #f3f7fb;
+            border: 1px solid #a9aeb1;
+            border-radius: 4px;
+            color: #575c60;
+            font-weight: 700;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline": "#73777b",
+                    "on-tertiary-fixed-variant": "#614400",
+                    "error-container": "#f95630",
+                    "on-error-container": "#520c00",
+                    "on-background": "#2a2f32",
+                    "tertiary-fixed-dim": "#efad16",
+                    "error-dim": "#b92902",
+                    "primary-dim": "#863800",
+                    "background": "#f3f7fb",
+                    "on-surface": "#2a2f32",
+                    "primary": "#994100",
+                    "primary-fixed": "#ff7a23",
+                    "secondary-dim": "#304a9a",
+                    "primary-container": "#ff7a23",
+                    "tertiary-dim": "#694a00",
+                    "surface-container": "#e3e9ee",
+                    "secondary-fixed-dim": "#b2c1ff",
+                    "on-secondary-container": "#274292",
+                    "tertiary-container": "#febb28",
+                    "surface-container-highest": "#d7dee3",
+                    "surface-container-high": "#dde3e8",
+                    "on-primary": "#fff0e9",
+                    "surface-tint": "#994100",
+                    "on-primary-container": "#3f1700",
+                    "secondary": "#3d57a7",
+                    "on-tertiary-container": "#563b00",
+                    "surface": "#f3f7fb",
+                    "on-primary-fixed": "#000000",
+                    "surface-variant": "#d7dee3",
+                    "on-tertiary-fixed": "#3c2900",
+                    "inverse-primary": "#f77113",
+                    "on-surface-variant": "#575c60",
+                    "error": "#b02500",
+                    "on-secondary-fixed": "#0c2d7e",
+                    "inverse-surface": "#0a0f12",
+                    "on-secondary": "#f1f2ff",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-on-surface": "#999da1",
+                    "secondary-container": "#c5d0ff",
+                    "surface-container-low": "#ecf1f6",
+                    "on-error": "#ffefec",
+                    "tertiary": "#795500",
+                    "on-tertiary": "#fff1de",
+                    "outline-variant": "#a9aeb1",
+                    "on-primary-fixed-variant": "#4e1e00",
+                    "surface-bright": "#f3f7fb",
+                    "tertiary-fixed": "#febb28",
+                    "on-secondary-fixed-variant": "#314b9c",
+                    "secondary-fixed": "#c5d0ff",
+                    "primary-fixed-dim": "#f06c0b",
+                    "surface-dim": "#ced5db"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Sans JP", "Lexend"],
+                    "body": ["Noto Sans JP"],
+                    "label": ["Noto Sans JP"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-slate-50/70 backdrop-blur-xl flex justify-between items-center px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="h-12 w-auto flex-shrink-0">
+<img alt="Dazzling Suns Logo" class="h-full w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0ugoOa4CMP9Jn4hDrdts-iEnvXqyRwPXVlTa9k_6HovZ9K2m3fMPrBNO6GA0ouSErgiSNfd_MORi7WZWtpHbQMx3jsTM0aT8FDe672uHmdZzewim1A3GKSOyHVvr-gpWlnjEqKVe35GGeVQqrfhZBdJjDgBHq0kCpsWLar8lufP1bl_h24P9mUnXSVvayK6TielmnaluK6THMbBzcqGzotW1MbxJQ3I7iOvgv7sgkP-NUYjiIdobNB8ZlzXtTabvWQ7K99F-3i1QYw"/>
+</div>
+<div>
+<h1 class="font-headline tracking-tight font-bold uppercase text-sm text-on-surface">DAZZLING SUNS improvement app</h1>
+</div>
+</div>
+<button class="w-10 h-10 flex items-center justify-center text-orange-700 hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</header>
+<main class="pb-32 sunburst-bg min-h-screen mt-24">
+<!-- Hero Header & Mode Toggle -->
+<section class="px-6 pt-8 pb-4 flex justify-between items-end">
+<div>
+<h2 class="font-headline font-bold text-3xl tracking-tight text-on-background">スキルライブラリ <span class="text-primary font-light text-xl">(詳細版)</span></h2>
+<p class="text-on-surface-variant font-label text-sm mt-1">カテゴリー別トレーニング管理</p>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Coach Edit Mode</span>
+<div class="flex items-center gap-2">
+<span class="text-xs text-on-surface-variant font-medium">OFF</span>
+<button class="relative inline-flex h-6 w-11 items-center rounded-full bg-surface-container-highest transition-colors focus:outline-none">
+<span class="inline-block h-4 w-4 transform rounded-full bg-white transition-transform translate-x-1"></span>
+</button>
+<span class="text-xs text-primary font-bold">ON</span>
+</div>
+</div>
+</section>
+<!-- Category Horizontal Scroll -->
+<div class="px-6 mb-8">
+<div class="flex gap-4 overflow-x-auto no-scrollbar py-2">
+<button class="flex-shrink-0 px-6 py-2 rounded-full bg-gradient-to-br from-primary to-primary-container text-white font-headline font-semibold text-sm shadow-lg shadow-orange-500/20 active:scale-95 transition-transform">シュート</button>
+<button class="flex-shrink-0 px-6 py-2 rounded-full bg-surface-container-highest text-on-surface-variant font-headline font-medium text-sm hover:bg-surface-container-high transition-colors">ドリブル</button>
+<button class="flex-shrink-0 px-6 py-2 rounded-full bg-surface-container-highest text-on-surface-variant font-headline font-medium text-sm hover:bg-surface-container-high transition-colors">パス</button>
+<button class="flex-shrink-0 px-6 py-2 rounded-full bg-surface-container-highest text-on-surface-variant font-headline font-medium text-sm hover:bg-surface-container-high transition-colors">IQ/判断</button>
+<button class="flex-shrink-0 px-6 py-2 rounded-full bg-surface-container-highest text-on-surface-variant font-headline font-medium text-sm hover:bg-surface-container-high transition-colors">ディフェンス</button>
+<button class="flex-shrink-0 px-6 py-2 rounded-full bg-surface-container-highest text-on-surface-variant font-headline font-medium text-sm hover:bg-surface-container-high transition-colors">メンタル</button>
+</div>
+</div>
+<!-- Content Area -->
+<div class="px-6 space-y-12">
+<!-- Category: シュート (Shooting) -->
+<section>
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-3">
+<div class="w-1.5 h-8 bg-primary rounded-full"></div>
+<h3 class="font-headline font-extrabold text-2xl text-secondary">シュート <span class="text-on-surface-variant/40 font-normal ml-2">SHOOTING</span></h3>
+</div>
+<div class="flex flex-col items-end gap-1">
+<span class="coach-only-badge">COACH ONLY</span>
+<button class="flex items-center gap-2 text-primary font-label font-bold text-sm bg-primary/5 px-4 py-2 rounded-full hover:bg-primary/10 transition-colors active:scale-95">
+<span class="material-symbols-outlined text-sm" data-icon="add_circle">add_circle</span>
+                            サブテーマ追加
+                        </button>
+</div>
+</div>
+<!-- Sub-Themes -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Sub-Theme: フォーム -->
+<div class="bg-surface-container-lowest rounded-lg p-6 shadow-[0_20px_40px_rgba(30,58,138,0.04)] border border-outline-variant/10 relative">
+<!-- Delete Icon for Coach Only -->
+<button class="absolute -top-2 -right-2 w-8 h-8 bg-white text-error rounded-full shadow-md flex items-center justify-center hover:bg-error/5 transition-colors">
+<span class="material-symbols-outlined text-base">delete</span>
+</button>
+<div class="flex justify-between items-start mb-4">
+<h4 class="font-headline font-bold text-lg text-on-background">フォーム</h4>
+<span class="bg-tertiary-container/30 text-on-tertiary-container px-3 py-1 rounded-full font-label text-[10px] font-extrabold">3 DRILLS</span>
+</div>
+<div class="space-y-6">
+<!-- Drill Item -->
+<div class="space-y-3 relative group">
+<button class="absolute -right-1 top-0 opacity-0 group-hover:opacity-100 transition-opacity text-on-surface-variant/40 hover:text-error">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+<div class="flex justify-between items-end">
+<span class="font-label font-bold text-sm text-secondary">ワンハンドフォーム</span>
+<span class="text-[10px] text-on-surface-variant font-medium">最終更新: 昨日</span>
+</div>
+<div class="grid grid-cols-2 gap-3 aspect-[16/10]">
+<div class="relative rounded-lg overflow-hidden bg-slate-900">
+<img alt="Coach Model" class="w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkWJ_gLiGFXcRr0ao7m3JavYAJXCwRF7fQide0RriGZs-5vnIa9zlOXsxLWceOoml1GLlPTAzHDwSyaZzA6cc76FG_VEfLwxbCaLMhF_RMPURq0hp7pxgcJWctSntd5cryiAY5IseTY5-Li-UVAPiNHPuqBuefKZp3AaLHuaDZFC6wrtWxD-ho__uRpsFiwrIRHSEmXSOtgUPtf9yu-qswYWF8DNf3mam776P-z83lyIZvXxhPjacz_tRPd0bRSbIHEVqPIKXNRxI"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-xl" data-icon="play_arrow">play_arrow</span>
+</div>
+</div>
+<span class="absolute bottom-2 left-2 bg-black/50 text-white text-[8px] px-2 py-0.5 rounded font-label uppercase">Coach</span>
+</div>
+<div class="relative rounded-lg overflow-hidden bg-slate-900">
+<img alt="Player Practice" class="w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFbGRHN1R5baUrb4XgE6XQ25tuclqGgQKawRVCq23Mvr1KL1LynJrOpQ3_gIQPd3wMyRXAnFBL_HX0ZE0Bj2Vlz4tPjQaZiDx6b9GCPrI8EK8C7lNf8CJHxCEXoI8s-EgWhEiGHJ5XwstJdcWxyEf_vt81c4gfuzzRpQjHYXy4SjtXjooe3WvrQGExsRU0_sPCWI6UG7Miinhj9bVmFAeZ7wirS5hL3JMxF3tnQUovQICfsZiyIl4VjVlaD1gktIS9uu9nWOvDCiE"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-10 h-10 rounded-full bg-orange-600/40 backdrop-blur-md flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-xl" data-icon="video_library">video_library</span>
+</div>
+</div>
+<span class="absolute bottom-2 left-2 bg-primary/80 text-white text-[8px] px-2 py-0.5 rounded font-label uppercase">Player</span>
+</div>
+</div>
+</div>
+<!-- Drill Item -->
+<div class="space-y-3 pt-4 border-t border-surface-container relative group">
+<button class="absolute -right-1 top-4 opacity-0 group-hover:opacity-100 transition-opacity text-on-surface-variant/40 hover:text-error">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+<div class="flex justify-between items-end">
+<span class="font-label font-bold text-sm text-secondary">バランスドスタンス</span>
+<span class="material-symbols-outlined text-primary text-lg" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div class="grid grid-cols-2 gap-3 aspect-[16/10]">
+<div class="relative rounded-lg overflow-hidden bg-slate-900">
+<img alt="Coach Model" class="w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMQifCaPDwWEA4lOOkpdOqlvvKc_QJax-M-G1s6XMvm72XBX9QWgMUGDoximM9-Q7hezHyLDIO3vA9h2a77VbM_mfhAa-rq9qgmoONVcqrIdSwUyluFDsQhDvyG-cngU8uoyuWgPzSgISaeRshHy1jn-D1xTG_rYjWZtsmyd16e5ThWF7_Yi2JePWZAh6Vy9nNjnAM0GORfJadvDw4417op0WZvQic6szyQ2hYbPgg2AhFSnubh_tvMc-NAGoB4wf_N-QjJNrXFQg"/>
+<span class="absolute bottom-2 left-2 bg-black/50 text-white text-[8px] px-2 py-0.5 rounded font-label uppercase">Coach</span>
+</div>
+<div class="flex flex-col items-center justify-center rounded-lg bg-surface-container-low border-2 border-dashed border-outline-variant/30 text-on-surface-variant gap-1">
+<span class="material-symbols-outlined text-2xl" data-icon="upload">upload</span>
+<span class="text-[10px] font-bold">動画をアップロード</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-1 mt-8">
+<span class="text-center coach-only-badge self-center">COACH ONLY</span>
+<button class="w-full py-3 rounded-xl border border-primary/20 text-primary font-headline font-bold text-sm flex items-center justify-center gap-2 hover:bg-primary/5 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-base" data-icon="add">add</span>
+                                ドリルを追加
+                            </button>
+</div>
+</div>
+<!-- Sub-Themes: Catch, Release -->
+<div class="space-y-8">
+<div class="bg-surface-container-lowest rounded-lg p-6 shadow-[0_20px_40px_rgba(30,58,138,0.04)] border border-outline-variant/10 relative">
+<button class="absolute -top-2 -right-2 w-7 h-7 bg-white text-error rounded-full shadow-sm flex items-center justify-center">
+<span class="material-symbols-outlined text-xs">delete</span>
+</button>
+<h4 class="font-headline font-bold text-lg text-on-background mb-4">キャッチ</h4>
+<div class="flex flex-wrap gap-2 items-center">
+<span class="px-3 py-1 bg-secondary/5 text-secondary rounded-full font-label text-xs font-bold">1-2 ステップ</span>
+<span class="px-3 py-1 bg-secondary/5 text-secondary rounded-full font-label text-xs font-bold">ホップキャッチ</span>
+<div class="flex flex-col items-center gap-0.5">
+<button class="p-1 text-primary-fixed-dim"><span class="material-symbols-outlined" data-icon="add_circle">add_circle</span></button>
+<span class="text-[6px] font-black text-on-surface-variant/40">ADMIN</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-lg p-6 shadow-[0_20px_40px_rgba(30,58,138,0.04)] border border-outline-variant/10 relative">
+<button class="absolute -top-2 -right-2 w-7 h-7 bg-white text-error rounded-full shadow-sm flex items-center justify-center">
+<span class="material-symbols-outlined text-xs">delete</span>
+</button>
+<h4 class="font-headline font-bold text-lg text-on-background mb-4">リリース</h4>
+<div class="flex flex-wrap gap-2 items-center">
+<span class="px-3 py-1 bg-secondary/5 text-secondary rounded-full font-label text-xs font-bold">ハイアーチ</span>
+<span class="px-3 py-1 bg-secondary/5 text-secondary rounded-full font-label text-xs font-bold">クイックリリース</span>
+<div class="flex flex-col items-center gap-0.5">
+<button class="p-1 text-primary-fixed-dim"><span class="material-symbols-outlined" data-icon="add_circle">add_circle</span></button>
+<span class="text-[6px] font-black text-on-surface-variant/40">ADMIN</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Visual Accent Card -->
+<div class="hidden lg:flex flex-col bg-secondary rounded-lg p-8 text-white relative overflow-hidden group shadow-xl">
+<div class="relative z-10">
+<span class="font-headline font-black text-6xl opacity-20 block mb-4 italic">SHOOT</span>
+<h5 class="text-2xl font-headline font-bold leading-tight">正確なフォームが、<br/>勝利を呼び込む。</h5>
+<p class="mt-4 text-secondary-container text-sm leading-relaxed">動画比較機能を使って、コーチのフォームと自分のズレをミリ単位で調整しましょう。</p>
+</div>
+<div class="absolute -bottom-10 -right-10 opacity-10 group-hover:scale-110 transition-transform duration-700">
+<span class="material-symbols-outlined text-[12rem]" data-icon="sports_basketball">sports_basketball</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Category: ドリブル (Dribbling) -->
+<section>
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-3">
+<div class="w-1.5 h-8 bg-primary rounded-full"></div>
+<h3 class="font-headline font-extrabold text-2xl text-secondary">ドリブル <span class="text-on-surface-variant/40 font-normal ml-2">DRIBBLING</span></h3>
+</div>
+<div class="flex flex-col items-end gap-1">
+<span class="coach-only-badge">COACH ONLY</span>
+<button class="flex items-center gap-2 text-primary font-label font-bold text-sm bg-primary/5 px-4 py-2 rounded-full hover:bg-primary/10 transition-colors active:scale-95">
+<span class="material-symbols-outlined text-sm" data-icon="add_circle">add_circle</span>
+                            サブテーマ追加
+                        </button>
+</div>
+</div>
+<div class="flex gap-4 overflow-x-auto no-scrollbar pb-6 -mx-6 px-6">
+<!-- Pace/Intensity Card -->
+<div class="flex-shrink-0 w-80 bg-surface-container-lowest rounded-lg p-6 shadow-md border border-outline-variant/10 relative">
+<button class="absolute -top-2 -right-2 w-8 h-8 bg-white text-error rounded-full shadow-md flex items-center justify-center">
+<span class="material-symbols-outlined text-base">delete</span>
+</button>
+<div class="flex justify-between items-center mb-6">
+<h4 class="font-headline font-bold text-xl text-on-background">強弱 (ペース)</h4>
+<span class="bg-primary/10 text-primary px-3 py-1 rounded-full font-label text-[10px] font-black uppercase tracking-wider">Active</span>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low relative group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="speed">speed</span>
+<span class="font-label font-bold text-sm">スタッカートドリブル</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant/40 text-lg" data-icon="chevron_right">chevron_right</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="bolt">bolt</span>
+<span class="font-label font-bold text-sm">パウンドドリブル</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant/40 text-lg" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<div class="flex flex-col gap-1 mt-6">
+<span class="text-center coach-only-badge self-center">COACH ONLY</span>
+<button class="w-full py-3 rounded-xl border border-primary/20 text-primary font-headline font-bold text-sm flex items-center justify-center gap-2 hover:bg-primary/5 transition-all">
+<span class="material-symbols-outlined text-base" data-icon="add">add</span>
+                                ドリルを追加
+                            </button>
+</div>
+</div>
+<!-- Other themes as smaller pills -->
+<div class="flex flex-col gap-4">
+<div class="w-64 bg-surface-container-low rounded-lg p-5 flex flex-col justify-between relative">
+<button class="absolute -top-2 -right-2 w-6 h-6 bg-white text-error rounded-full shadow-sm flex items-center justify-center">
+<span class="material-symbols-outlined text-[10px]">delete</span>
+</button>
+<h4 class="font-headline font-bold text-on-background">チェンジ</h4>
+<p class="text-xs text-on-surface-variant mt-1">方向転換とクロスオーバー</p>
+<div class="flex justify-between items-center mt-4">
+<span class="text-[10px] font-bold text-primary">2 DRILLS</span>
+<button class="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm"><span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span></button>
+</div>
+</div>
+<div class="w-64 bg-surface-container-low rounded-lg p-5 flex flex-col justify-between relative">
+<button class="absolute -top-2 -right-2 w-6 h-6 bg-white text-error rounded-full shadow-sm flex items-center justify-center">
+<span class="material-symbols-outlined text-[10px]">delete</span>
+</button>
+<h4 class="font-headline font-bold text-on-background">ストップ</h4>
+<p class="text-xs text-on-surface-variant mt-1">急停止とプルアップ</p>
+<div class="flex justify-between items-center mt-4">
+<span class="text-[10px] font-bold text-primary">1 DRILL</span>
+<button class="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm"><span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span></button>
+</div>
+</div>
+</div>
+<div class="w-64 bg-surface-container-low rounded-lg p-5 flex flex-col justify-between relative">
+<button class="absolute -top-2 -right-2 w-6 h-6 bg-white text-error rounded-full shadow-sm flex items-center justify-center">
+<span class="material-symbols-outlined text-[10px]">delete</span>
+</button>
+<h4 class="font-headline font-bold text-on-background">フットワーク</h4>
+<p class="text-xs text-on-surface-variant mt-1">トリプルスレットとピボット</p>
+<div class="flex justify-between items-center mt-4">
+<span class="text-[10px] font-bold text-primary">0 DRILLS</span>
+<div class="flex flex-col items-center gap-0.5">
+<button class="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm"><span class="material-symbols-outlined text-sm" data-icon="add">add</span></button>
+<span class="text-[6px] font-black text-on-surface-variant/40">COACH ONLY</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bottom Sections (Brief Preview) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<section class="bg-surface-container-low/50 rounded-lg p-6 border border-outline-variant/10">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-headline font-bold text-xl text-secondary">パス</h3>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="open_in_new">open_in_new</span>
+</div>
+<div class="flex gap-2">
+<span class="px-3 py-1.5 bg-white rounded-full font-label text-[10px] font-bold shadow-sm">チェスト</span>
+<span class="px-3 py-1.5 bg-white rounded-full font-label text-[10px] font-bold shadow-sm">バウンド</span>
+<span class="px-3 py-1.5 bg-white rounded-full font-label text-[10px] font-bold shadow-sm">オーバーヘッド</span>
+</div>
+</section>
+<section class="bg-surface-container-low/50 rounded-lg p-6 border border-outline-variant/10">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-headline font-bold text-xl text-secondary">IQ/判断</h3>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="open_in_new">open_in_new</span>
+</div>
+<div class="flex gap-2">
+<span class="px-3 py-1.5 bg-white rounded-full font-label text-[10px] font-bold shadow-sm">スペーシング</span>
+<span class="px-3 py-1.5 bg-white rounded-full font-label text-[10px] font-bold shadow-sm">ピック＆ロール</span>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Player View) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-slate-50/80 backdrop-blur-xl rounded-t-[3rem] shadow-[0_-20px_40px_rgba(30,58,138,0.08)]">
+<a class="flex flex-col items-center justify-center text-slate-400 p-3 active:scale-90 duration-300 hover:text-orange-500" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-headline font-medium text-[10px] uppercase tracking-widest mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-gradient-to-br from-orange-600 to-orange-400 text-white rounded-full p-3 shadow-lg shadow-orange-500/30 active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="font-headline font-medium text-[10px] uppercase tracking-widest mt-1">Library</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 p-3 active:scale-90 duration-300 hover:text-orange-500" href="#">
+<span class="material-symbols-outlined" data-icon="dynamic_feed">dynamic_feed</span>
+<span class="font-headline font-medium text-[10px] uppercase tracking-widest mt-1">Feed</span>
+</a>
+</nav>
+</body></html>

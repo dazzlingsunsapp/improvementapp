@@ -1,0 +1,259 @@
+<html lang="ja"><head></head><body class="bg-surface font-body text-on-surface pb-32">```html
+
+
+
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&amp;family=Lexend:wght@400;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed": "#ff7a23",
+                    "surface-dim": "#ced5db",
+                    "on-tertiary-container": "#563b00",
+                    "on-surface": "#2a2f32",
+                    "on-surface-variant": "#575c60",
+                    "on-tertiary": "#fff1de",
+                    "on-error-container": "#520c00",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed": "#3c2900",
+                    "on-primary-fixed": "#000000",
+                    "surface-container": "#e3e9ee",
+                    "surface-bright": "#f3f7fb",
+                    "on-primary-fixed-variant": "#4e1e00",
+                    "outline-variant": "#a9aeb1",
+                    "secondary-container": "#c5d0ff",
+                    "on-secondary": "#f1f2ff",
+                    "tertiary-container": "#febb28",
+                    "surface": "#f3f7fb",
+                    "background": "#f3f7fb",
+                    "error-dim": "#b92902",
+                    "tertiary": "#795500",
+                    "primary": "#994100",
+                    "surface-container-highest": "#d7dee3",
+                    "on-primary-container": "#3f1700",
+                    "secondary-fixed": "#c5d0ff",
+                    "on-background": "#2a2f32",
+                    "surface-tint": "#994100",
+                    "primary-fixed-dim": "#f06c0b",
+                    "primary-container": "#ff7a23",
+                    "tertiary-fixed-dim": "#efad16",
+                    "secondary": "#3d57a7",
+                    "outline": "#73777b",
+                    "on-error": "#ffefec",
+                    "error-container": "#f95630",
+                    "on-secondary-fixed": "#0c2d7e",
+                    "tertiary-dim": "#694a00",
+                    "primary-dim": "#863800",
+                    "error": "#b02500",
+                    "secondary-fixed-dim": "#b2c1ff",
+                    "on-secondary-fixed-variant": "#314b9c",
+                    "inverse-on-surface": "#999da1",
+                    "surface-container-low": "#ecf1f6",
+                    "inverse-primary": "#f77113",
+                    "inverse-surface": "#0a0f12",
+                    "on-tertiary-fixed-variant": "#614400",
+                    "tertiary-fixed": "#febb28",
+                    "surface-variant": "#d7dee3",
+                    "surface-container-high": "#dde3e8",
+                    "on-primary": "#fff0e9",
+                    "secondary-dim": "#304a9a",
+                    "on-secondary-container": "#274292"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Sans JP", "Lexend", "sans-serif"],
+                    "body": ["Noto Sans JP", "Manrope", "sans-serif"],
+                    "label": ["Noto Sans JP", "Plus Jakarta Sans", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .sunburst-bg {
+            background-image: radial-gradient(circle at top right, rgba(255, 122, 35, 0.08) 0%, transparent 60%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+    </style>
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-slate-50/70 backdrop-blur-xl flex justify-between items-center px-6 py-4"><div class="flex items-center gap-3">
+<div class="h-12 w-auto flex-shrink-0">
+<img alt="Dazzling Suns Logo" class="h-full w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0ugoOa4CMP9Jn4hDrdts-iEnvXqyRwPXVlTa9k_6HovZ9K2m3fMPrBNO6GA0ouSErgiSNfd_MORi7WZWtpHbQMx3jsTM0aT8FDe672uHmdZzewim1A3GKSOyHVvr-gpWlnjEqKVe35GGeVQqrfhZBdJjDgBHq0kCpsWLar8lufP1bl_h24P9mUnXSVvayK6TielmnaluK6THMbBzcqGzotW1MbxJQ3I7iOvgv7sgkP-NUYjiIdobNB8ZlzXtTabvWQ7K99F-3i1QYw"/>
+</div>
+<div>
+<h1 class="font-headline tracking-tight font-bold uppercase text-sm text-on-surface">DAZZLING SUNS improvement app</h1>
+</div>
+</div>
+<button class="w-10 h-10 flex items-center justify-center text-orange-700 hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined">notifications</span>
+</button></header>
+<main class="mt-20 px-4 space-y-8 sunburst-bg">
+<!-- 今日の練習 (Today's Practice) Section -->
+<section class="space-y-4">
+<div class="flex items-end justify-between px-2">
+<h2 class="text-2xl font-bold font-headline tracking-tight text-on-surface">今日の練習</h2>
+<span class="text-xs font-label uppercase tracking-wider text-secondary font-bold">Today's Practice</span>
+</div>
+<!-- Video Thumbnail Card -->
+<div class="relative group overflow-hidden rounded-lg bg-surface-container-lowest shadow-[0_20px_40px_rgba(30,58,138,0.06)]">
+<div class="aspect-video relative overflow-hidden">
+<img alt="Basketball Drill Video" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Intense basketball practice session inside a modern well-lit gym with players practicing dribbling drills on a polished wooden court" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8zMuTmRWGFNhwKbnQAm_dMMFlYDlqaZQ1qpW4BCp6mOvOk8XRs6rIzwiMk1Oe8pQfoJ_O-GJQUxApScDjUpM_r2ure3f_x5NOgcxlANfEI_rDtGUKNnUjjuxuO-7y7AwZkd4XCxPyg35adeU0EPkuHnnFcwhH6GrKij8vJqoLSEKTbaAal6S_ANXU7tDavBv3FiaKaSoHg5ZmKSv_ZOztW060W6mHBnUMr5kuU3GvwIwqtH-tqDMD2mqjAV5dwljhWxJtvbIHixE"/>
+<div class="absolute inset-0 bg-black/20 flex items-center justify-center">
+<div class="w-16 h-16 bg-primary-container/90 rounded-full flex items-center justify-center text-white shadow-lg backdrop-blur-sm">
+<span class="material-symbols-outlined text-4xl" data-icon="play_arrow" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+<div class="absolute bottom-4 left-4 bg-secondary/80 backdrop-blur-md text-white text-[10px] font-label px-3 py-1 rounded-full uppercase tracking-widest">
+                        Skill Drill #042
+                </div>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="bolt">bolt</span>
+<h3 class="text-sm font-bold font-headline text-primary">ドリル概要: トランジション・アタック</h3>
+</div>
+<p class="text-sm leading-relaxed text-on-surface-variant font-medium">
+                        本日のメインメニューは3対2の高速トランジション。ディフェンスのリバウンドから3秒以内でのフィニッシュを徹底しました。スペーシングとアイコンタクトの質が向上しています。
+                </p>
+</div>
+</div>
+</section>
+<!-- スタッフからのフィードバック (Staff Feedback) Section -->
+<section class="space-y-6">
+<div class="flex items-center justify-between px-2">
+<div class="flex flex-col">
+<h2 class="text-xl font-bold font-headline tracking-tight text-on-surface">スタッフからのフィードバック</h2>
+<p class="text-[10px] font-label text-secondary font-bold uppercase tracking-widest">Coaching Staff Feedback</p>
+</div>
+<div class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-[10px] font-bold font-label uppercase">
+                    3 New Messages
+            </div>
+</div>
+<!-- Feedback Timeline -->
+<div class="space-y-6 relative">
+<!-- Vertical Line (Subtle Design Element) -->
+<div class="absolute left-6 top-0 bottom-0 w-[2px] bg-surface-container-highest -z-10"></div>
+<!-- Head Coach Feedback -->
+<div class="flex gap-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-xl bg-primary overflow-hidden shadow-md ring-4 ring-surface">
+<img alt="Head Coach" class="w-full h-full object-cover" data-alt="Professional mature male basketball coach with a serious focused expression wearing a dark polo shirt" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdwPrZ6FocZkml2XmTjMc8w_ykbmtV_aRm5DEO8qkZ5Eh_6QUOdXZYyHtuwo73r8cZ21XpdG8axLwt59AuignJ5hXRuqawYFNI-TdS3GVGmt7e4I7HQeuChpfFjDn2YVKx0zgRWHDRpaabPolQURVhof4ug5ym4ML1eIcsy6W2UiS-rQ_PyBRbWABHTfXsGWYzzFcK9G09Ajs0G-TXacc3Pw5cyciVxSk01WYMLpAdohc7owOUC6lAZyd38jPeBGnam10nHXCt6dU"/>
+</div>
+<div class="flex-grow space-y-2">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold font-headline text-secondary uppercase tracking-tight">ヘッドコーチより</span>
+<span class="text-[10px] font-label text-outline">10:45 AM</span>
+</div>
+<div class="bg-primary text-on-primary p-5 rounded-lg rounded-tl-sm shadow-[0_10px_20px_rgba(153,65,0,0.15)]">
+<p class="text-sm leading-relaxed font-semibold mb-2">佐藤 剛 (Takeshi Sato)</p>
+<p class="text-sm leading-relaxed opacity-90">
+                                全体的にインテンシティは高かった。特にバックコートでのプレッシャーは及第点。ただし、セットオフェンスへの移行時にガード陣の判断が0.5秒遅い。次のビデオセッションでパスコースの優先順位を再確認しよう。
+                        </p>
+</div>
+<div class="flex gap-2">
+<span class="bg-on-primary/10 text-[10px] text-on-primary px-3 py-1 rounded-full font-label">#タクティカル</span>
+<span class="bg-on-primary/10 text-[10px] text-on-primary px-3 py-1 rounded-full font-label">#トランジション</span>
+</div>
+<!-- Player Comment Input -->
+<div class="mt-3 relative">
+<input class="w-full bg-white border border-outline-variant/30 rounded-full px-4 py-2 text-xs font-body focus:ring-1 focus:ring-primary focus:border-primary outline-none pr-10" placeholder="質問や返信を入力..." type="text"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">send</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Trainer Feedback -->
+<div class="flex gap-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-xl bg-secondary overflow-hidden shadow-md ring-4 ring-surface">
+<img alt="Trainer" class="w-full h-full object-cover" data-alt="Fit female athletic trainer in sports gear looking professional and encouraging" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIaybOWcasAqRHNJgkqJ3T2A4WIr2vbibGbQR8WAle-HJU7j8DJ_v2c8zAxEFFEvKrgh0aZXhxReO0QDXDjjkGt4NNBItlfuoo7Ce7qKJRAuhmea8POxTG9XA7ojTRaMESUv7gaaNfc2tf13-5kPiGVYpVP2IHzUvZliVir7_U-FL1PO2b_oz_tan7q3tAb-tLeKDKWbbIWodnjaVQWT1KaM8yfUj4z-ZTkHxTTAJkD-mCqwR5ZpL826a7C1QqSP7Lg1q9psVs9z0"/>
+</div>
+<div class="flex-grow space-y-2">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold font-headline text-secondary uppercase tracking-tight">トレーナーより</span>
+<span class="text-[10px] font-label text-outline">11:15 AM</span>
+</div>
+<div class="bg-surface-container-lowest text-on-surface p-5 rounded-lg rounded-tl-sm shadow-[0_15px_30px_rgba(0,0,0,0.03)] border border-outline-variant/10">
+<p class="text-sm leading-relaxed font-bold text-secondary mb-2">田中 理恵 (Rie Tanaka)</p>
+<p class="text-sm leading-relaxed text-on-surface-variant">
+                                練習後の交代浴とストレッチを徹底してください。特に田中選手と伊藤選手は左足首の張りが強いので、個別にケアメニューを追加しました。怪我予防のため、睡眠時間を8時間以上確保すること。
+                        </p>
+</div>
+<div class="flex gap-2">
+<span class="bg-tertiary-container/30 text-on-tertiary-container text-[10px] px-3 py-1 rounded-full font-bold font-label uppercase">Mandatory</span>
+</div>
+<!-- Player Comment Input -->
+<div class="mt-3 relative">
+<input class="w-full bg-white border border-outline-variant/30 rounded-full px-4 py-2 text-xs font-body focus:ring-1 focus:ring-primary focus:border-primary outline-none pr-10" placeholder="コンディションを報告..." type="text"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">send</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Assistant Coach Feedback -->
+<div class="flex gap-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-xl bg-surface-container-highest overflow-hidden shadow-md ring-4 ring-surface">
+<img alt="Assistant Coach" class="w-full h-full object-cover" data-alt="Young energetic male assistant coach smiling with short dark hair in a sports jersey" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKyL1ssmJpSVHweCA1LcR-BZkaJkfvOtxdStjogAuoFBmDH2mwtVcaJ1tKHRyYb9GJvT4SIg-ZWT-EqMdXUCG9hYMS1JqeK5rzgdmewDv2PKZIKyGNJhuIAZiCj4IMZTzHWi49_DLTAWPRrQQV6ArVzPZxOnVPZUOtOUCNroC9v-zBY_PwHnbAvujTeiDRQzWb-Ir85PA7eA4A169eEILZp1llzJZE_a1YM10mVNc0rFEs6narDiPMYMqBKyyuHnQvdw71zbdbRUs"/>
+</div>
+<div class="flex-grow space-y-2">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold font-headline text-secondary uppercase tracking-tight">アシスタントコーチより</span>
+<span class="text-[10px] font-label text-outline">12:30 PM</span>
+</div>
+<div class="bg-secondary text-white p-5 rounded-lg rounded-tl-sm shadow-[0_10px_20px_rgba(61,87,167,0.15)]">
+<p class="text-sm leading-relaxed font-semibold mb-2">山田 健二 (Kenji Yamada)</p>
+<p class="text-sm leading-relaxed opacity-90">
+                                個別スキルの時間で見せたフリースローのルーティン、非常に安定していた。シュート時の肘の位置を意識し続けよう。明日、追加でペリメーターシュート의ドリルを組むので各自準備しておくこと。
+                        </p>
+</div>
+<div class="flex gap-2">
+<span class="bg-white/10 text-[10px] text-white px-3 py-1 rounded-full font-label">#個人スキル</span>
+<span class="bg-white/10 text-[10px] text-white px-3 py-1 rounded-full font-label">#シューティング</span>
+</div>
+<!-- Player Comment Input -->
+<div class="mt-3 relative">
+<input class="w-full bg-white border border-outline-variant/30 rounded-full px-4 py-2 text-xs font-body focus:ring-1 focus:ring-primary focus:border-primary outline-none pr-10" placeholder="意識するポイントを確認..." type="text"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-slate-50/70 backdrop-blur-xl z-50 rounded-t-[3rem] shadow-[0_-20px_40px_rgba(30,58,138,0.06)]">
+<a class="flex flex-col items-center justify-center text-slate-500 hover:text-orange-600 transition-transform active:scale-90 px-6 py-2" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label text-[10px] font-medium uppercase tracking-tighter mt-1">ホーム</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 hover:text-orange-600 transition-transform active:scale-90 px-6 py-2" href="#">
+<span class="material-symbols-outlined" data-icon="video_library">video_library</span>
+<span class="font-label text-[10px] font-medium uppercase tracking-tighter mt-1">ライブラリ</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-orange-100 text-orange-800 rounded-[3rem] px-6 py-2 transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="history_edu" style="font-variation-settings: 'FILL' 1;">history_edu</span>
+<span class="font-label text-[10px] font-medium uppercase tracking-tighter mt-1">練習フィード</span>
+</a>
+</nav>
+```</body></html>

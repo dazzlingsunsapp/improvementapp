@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ja"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-highest": "#d7dee3",
+                    "on-tertiary-container": "#563b00",
+                    "outline": "#73777b",
+                    "on-secondary-fixed-variant": "#314b9c",
+                    "tertiary-container": "#febb28",
+                    "on-tertiary-fixed": "#3c2900",
+                    "inverse-surface": "#0a0f12",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-dim": "#863800",
+                    "on-error": "#ffefec",
+                    "primary-container": "#ff7a23",
+                    "on-background": "#2a2f32",
+                    "outline-variant": "#a9aeb1",
+                    "primary-fixed-dim": "#f06c0b",
+                    "tertiary-dim": "#694a00",
+                    "surface-container-low": "#ecf1f6",
+                    "surface-container": "#e3e9ee",
+                    "tertiary": "#795500",
+                    "secondary": "#3d57a7",
+                    "surface-tint": "#994100",
+                    "on-tertiary": "#fff1de",
+                    "secondary-container": "#c5d0ff",
+                    "secondary-fixed-dim": "#b2c1ff",
+                    "error": "#b02500",
+                    "on-tertiary-fixed-variant": "#614400",
+                    "on-secondary": "#f1f2ff",
+                    "primary-fixed": "#ff7a23",
+                    "on-surface": "#2a2f32",
+                    "error-container": "#f95630",
+                    "on-error-container": "#520c00",
+                    "tertiary-fixed": "#febb28",
+                    "on-secondary-fixed": "#0c2d7e",
+                    "on-secondary-container": "#274292",
+                    "on-primary-fixed": "#000000",
+                    "surface-variant": "#d7dee3",
+                    "surface-bright": "#f3f7fb",
+                    "inverse-on-surface": "#999da1",
+                    "secondary-fixed": "#c5d0ff",
+                    "surface-container-high": "#dde3e8",
+                    "inverse-primary": "#f77113",
+                    "error-dim": "#b92902",
+                    "on-primary-container": "#3f1700",
+                    "background": "#f3f7fb",
+                    "tertiary-fixed-dim": "#efad16",
+                    "surface-dim": "#ced5db",
+                    "secondary-dim": "#304a9a",
+                    "on-primary": "#fff0e9",
+                    "primary": "#994100",
+                    "on-primary-fixed-variant": "#4e1e00",
+                    "surface": "#f3f7fb",
+                    "on-surface-variant": "#575c60"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Sans JP", "sans-serif"],
+                    "body": ["Noto Sans JP", "sans-serif"],
+                    "label": ["Noto Sans JP", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      body {
+        font-family: 'Noto Sans JP', sans-serif;
+        background-color: #f3f7fb;
+        color: #2a2f32;
+      }
+      .sunlight-accent {
+        background: radial-gradient(circle at top right, rgba(255, 122, 35, 0.1) 0%, transparent 70%);
+      }
+      input[type="range"] {
+        -webkit-appearance: none;
+        appearance: none;
+        background: transparent;
+        cursor: pointer;
+      }
+      input[type="range"]::-webkit-slider-runnable-track {
+        background: #ecf1f6;
+        height: 0.5rem;
+        border-radius: 9999px;
+      }
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        margin-top: -8px;
+        background-color: #994100;
+        height: 1.5rem;
+        width: 1.5rem;
+        border-radius: 50%;
+        border: 2px solid white;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      }
+      .trend-up { color: #10b981; }
+      .trend-down { color: #ef4444; }
+      .radar-bg {
+        background-image: radial-gradient(circle, #ecf1f6 1px, transparent 1px);
+        background-size: 20px 20px;
+      }
+      .radar-poly-prev {
+        fill: rgba(30, 58, 138, 0.05);
+        stroke: #3d57a7;
+        stroke-dasharray: 4;
+        stroke-width: 2;
+      }
+      .radar-poly-curr {
+        fill: rgba(255, 122, 35, 0.2);
+        stroke: #994100;
+        stroke-width: 2;
+      }
+    </style>
+</head>
+<body class="min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-slate-50/70 backdrop-blur-xl px-6 py-4">
+<div class="max-w-5xl mx-auto flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="h-10 w-auto flex-shrink-0">
+<img alt="Dazzling Suns Logo" class="h-full w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0ugoOa4CMP9Jn4hDrdts-iEnvXqyRwPXVlTa9k_6HovZ9K2m3fMPrBNO6GA0ouSErgiSNfd_MORi7WZWtpHbQMx3jsTM0aT8FDe672uHmdZzewim1A3GKSOyHVvr-gpWlnjEqKVe35GGeVQqrfhZBdJjDgBHq0kCpsWLar8lufP1bl_h24P9mUnXSVvayK6TielmnaluK6THMbBzcqGzotW1MbxJQ3I7iOvgv7sgkP-NUYjiIdobNB8ZlzXtTabvWQ7K99F-3i1QYw"/>
+</div>
+<div>
+<h1 class="font-headline tracking-tight font-bold uppercase text-xs text-on-surface">DAZZLING SUNS improvement app</h1>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full text-sm focus:ring-2 focus:ring-primary w-64" placeholder="選手を検索..." type="text"/>
+</div>
+<button class="w-10 h-10 flex items-center justify-center text-orange-700 hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</div>
+<!-- Mobile Search -->
+<div class="md:hidden mt-3 px-1">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full text-sm focus:ring-2 focus:ring-primary" placeholder="選手を検索..." type="text"/>
+</div>
+</div>
+</header>
+<main class="pt-32 md:pt-28 px-4 max-w-5xl mx-auto sunlight-accent">
+<!-- Player Carousel / Navigation -->
+<div class="mb-6 flex items-center justify-between">
+<button class="p-2 rounded-full bg-surface-container hover:bg-surface-container-high transition-colors text-on-surface">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<div class="flex gap-1.5">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+</div>
+<button class="p-2 rounded-full bg-surface-container hover:bg-surface-container-high transition-colors text-on-surface">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+<!-- Header & Profile Summary -->
+<div class="relative overflow-hidden rounded-xl bg-surface-container-lowest p-6 shadow-[0_20px_40px_rgba(30,58,138,0.06)] mb-8">
+<div class="flex flex-col md:flex-row gap-6 items-center">
+<div class="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-primary/10">
+<img alt="マーカス・トンプソン選手" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDS4Ur-SUZ7_oGLHysk_NX4NgukB8DARgrdpgeIUhipkD28o-udcu6JsLQtj78ga2IEkXahKBcKG3bGVeBPoaPD82CyDkBA5shPefIqP5JdBsUsNtABtj_VA5ZDfei3MmpW8MWvXv2VxpAPajsgSancMyRTu2rati9wr_2gwLIveHQQX-KGtGMvpzwUmegqkgHJeC1jdZbyavnqS-GnD4usNegi2rC_Pvpb_pMYJx1RiXDTusr2T4Audm61Tpz4BYFFtI1ZZ4Pf6CI"/>
+</div>
+<div class="flex-1 text-center md:text-left">
+<div class="flex flex-wrap items-center justify-center md:justify-start gap-3 mb-2">
+<span class="px-3 py-1 bg-tertiary-container text-on-tertiary-container text-xs font-bold rounded-full font-label uppercase">Elite Prospect</span>
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container text-xs font-bold rounded-full font-label uppercase">Coach ONLY: Active Scout</span>
+</div>
+<h2 class="font-headline text-3xl font-bold text-on-surface mb-1">マーカス・トンプソン</h2>
+<p class="font-body text-on-surface-variant text-lg mb-4">PG / シニア / #23</p>
+<div class="inline-flex items-center gap-2 px-4 py-2 bg-orange-50 border border-orange-100 rounded-lg text-orange-700 text-sm">
+<span class="material-symbols-outlined text-sm">info</span>
+<p class="font-medium">この評価は選手のホーム画面にリアルタイムで反映されます</p>
+</div>
+</div>
+<div class="hidden lg:block w-px h-24 bg-surface-container"></div>
+<div class="grid grid-cols-2 gap-4 text-center">
+<div>
+<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant mb-1">総合評価</p>
+<p class="font-headline text-4xl font-black text-primary">A-</p>
+</div>
+<div>
+<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant mb-1">期待値</p>
+<p class="font-headline text-4xl font-black text-secondary">PRO</p>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Left Column: Skill Assessment & Radar -->
+<div class="lg:col-span-2 space-y-8">
+<!-- Skill Assessment -->
+<section class="bg-surface-container-lowest rounded-lg p-8 shadow-[0_20px_40px_rgba(30,58,138,0.06)]">
+<div class="flex items-center justify-between mb-8">
+<h3 class="font-headline text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">analytics</span>
+                        スキル評価 (6項目)
+                    </h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+<!-- Radar Chart Preview -->
+<div class="relative aspect-square max-w-[280px] mx-auto w-full radar-bg rounded-full flex items-center justify-center p-4">
+<svg class="w-full h-full overflow-visible" viewbox="0 0 100 100">
+<!-- Background Circles -->
+<circle cx="50" cy="50" fill="none" r="40" stroke="#e3e9ee" stroke-width="0.5"></circle>
+<circle cx="50" cy="50" fill="none" r="30" stroke="#e3e9ee" stroke-width="0.5"></circle>
+<circle cx="50" cy="50" fill="none" r="20" stroke="#e3e9ee" stroke-width="0.5"></circle>
+<circle cx="50" cy="50" fill="none" r="10" stroke="#e3e9ee" stroke-width="0.5"></circle>
+<!-- Axes -->
+<line stroke="#e3e9ee" stroke-width="0.5" x1="50" x2="50" y1="10" y2="90"></line>
+<line stroke="#e3e9ee" stroke-width="0.5" x1="15" x2="85" y1="30" y2="70"></line>
+<line stroke="#e3e9ee" stroke-width="0.5" x1="15" x2="85" y1="70" y2="30"></line>
+<!-- Previous Scores (Dashed) - Placeholder points -->
+<polygon class="radar-poly-prev" points="50,20 80,40 75,70 50,85 25,70 20,40"></polygon>
+<!-- Current Scores (Solid) - Placeholder points -->
+<polygon class="radar-poly-curr" points="50,15 85,35 80,75 50,90 30,75 25,35"></polygon>
+</svg>
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 text-[10px] font-bold text-on-surface-variant">シュート</div>
+<div class="absolute top-1/4 -right-10 text-[10px] font-bold text-on-surface-variant">ドリブル</div>
+<div class="absolute bottom-1/4 -right-10 text-[10px] font-bold text-on-surface-variant">DF</div>
+<div class="absolute -bottom-4 left-1/2 -translate-x-1/2 text-[10px] font-bold text-on-surface-variant">IQ/判断</div>
+<div class="absolute bottom-1/4 -left-10 text-[10px] font-bold text-on-surface-variant">パス</div>
+<div class="absolute top-1/4 -left-10 text-[10px] font-bold text-on-surface-variant">メンタル</div>
+</div>
+<!-- Sliders with Previous Score -->
+<div class="space-y-6">
+<div class="space-y-2">
+<div class="flex justify-between font-label text-xs uppercase tracking-tight text-on-surface-variant">
+<span>シュート</span>
+<div class="flex gap-3">
+<span class="text-on-secondary-container/50">PREV: 78</span>
+<span class="font-bold text-primary">CURR: 85</span>
+</div>
+</div>
+<input class="w-full" max="100" min="0" type="range" value="85"/>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between font-label text-xs uppercase tracking-tight text-on-surface-variant">
+<span>ドリブル</span>
+<div class="flex gap-3">
+<span class="text-on-secondary-container/50">PREV: 90</span>
+<span class="font-bold text-primary">CURR: 92</span>
+</div>
+</div>
+<input class="w-full" max="100" min="0" type="range" value="92"/>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between font-label text-xs uppercase tracking-tight text-on-surface-variant">
+<span>ディフェンス</span>
+<div class="flex gap-3">
+<span class="text-on-secondary-container/50">PREV: 75</span>
+<span class="font-bold text-primary">CURR: 78</span>
+</div>
+</div>
+<input class="w-full" max="100" min="0" type="range" value="78"/>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between font-label text-xs uppercase tracking-tight text-on-surface-variant">
+<span>IQ/判断</span>
+<div class="flex gap-3">
+<span class="text-on-secondary-container/50">PREV: 85</span>
+<span class="font-bold text-primary">CURR: 88</span>
+</div>
+</div>
+<input class="w-full" max="100" min="0" type="range" value="88"/>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between font-label text-xs uppercase tracking-tight text-on-surface-variant">
+<span>パス</span>
+<div class="flex gap-3">
+<span class="text-on-secondary-container/50">PREV: 68</span>
+<span class="font-bold text-primary">CURR: 70</span>
+</div>
+</div>
+<input class="w-full" max="100" min="0" type="range" value="70"/>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between font-label text-xs uppercase tracking-tight text-on-surface-variant">
+<span>メンタル</span>
+<div class="flex gap-3">
+<span class="text-on-secondary-container/50">PREV: 92</span>
+<span class="font-bold text-primary">CURR: 95</span>
+</div>
+</div>
+<input class="w-full" max="100" min="0" type="range" value="95"/>
+</div>
+</div>
+</div>
+<div class="mt-8 flex justify-center gap-6">
+<div class="flex items-center gap-2">
+<div class="w-4 h-0.5 border-t-2 border-dashed border-secondary"></div>
+<span class="text-[10px] font-bold text-on-surface-variant">前回評価</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-4 h-0.5 bg-primary"></div>
+<span class="text-[10px] font-bold text-on-surface-variant">現在評価</span>
+</div>
+</div>
+</section>
+<!-- Physical Performance Section -->
+<section class="bg-surface-container-lowest rounded-lg p-8 shadow-[0_20px_40px_rgba(30,58,138,0.06)]">
+<div class="flex items-center justify-between mb-8">
+<h3 class="font-headline text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">fitness_center</span>
+                        体力測定 (8項目)
+                    </h3>
+<button class="flex items-center gap-1 px-4 py-2 bg-primary text-white text-sm font-bold rounded-full hover:opacity-90 transition-all">
+<span class="material-symbols-outlined text-base">add</span>
+                        新規測定
+                    </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+<div class="bg-surface-container-low p-4 rounded-xl border border-outline-variant/30">
+<div class="flex justify-between items-start mb-3">
+<span class="font-label text-xs font-bold text-on-surface-variant uppercase tracking-wider">垂直跳び</span>
+<span class="text-xs bg-primary-container/20 text-primary px-2 py-0.5 rounded-full font-bold">最新</span>
+</div>
+<div class="flex items-baseline gap-2 mb-2">
+<span class="text-3xl font-black text-on-surface">82</span>
+<span class="text-sm font-body text-on-surface-variant">cm</span>
+<span class="ml-auto text-sm font-bold trend-up flex items-center">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                                +5%
+                            </span>
+</div>
+<div class="flex gap-1 h-8 items-end">
+<div class="flex-1 bg-outline-variant/20 h-[60%] rounded-sm"></div>
+<div class="flex-1 bg-outline-variant/20 h-[75%] rounded-sm"></div>
+<div class="flex-1 bg-primary h-full rounded-sm"></div>
+</div>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl border border-outline-variant/30">
+<div class="flex justify-between items-start mb-3">
+<span class="font-label text-xs font-bold text-on-surface-variant uppercase tracking-wider">20mスプリント</span>
+<span class="text-xs bg-primary-container/20 text-primary px-2 py-0.5 rounded-full font-bold">最新</span>
+</div>
+<div class="flex items-baseline gap-2 mb-2">
+<span class="text-3xl font-black text-on-surface">2.9</span>
+<span class="text-sm font-body text-on-surface-variant">s</span>
+<span class="ml-auto text-sm font-bold trend-up flex items-center">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                                -0.1s
+                            </span>
+</div>
+<div class="flex gap-1 h-8 items-end">
+<div class="flex-1 bg-outline-variant/20 h-[90%] rounded-sm"></div>
+<div class="flex-1 bg-outline-variant/20 h-[85%] rounded-sm"></div>
+<div class="flex-1 bg-primary h-[80%] rounded-sm"></div>
+</div>
+</div>
+</div>
+<div class="space-y-3">
+<!-- 1. 垂直跳び -->
+<div class="group bg-surface-container-low/50 border border-transparent hover:border-primary/20 rounded-xl transition-all">
+<div class="p-4 flex justify-between items-center cursor-pointer">
+<div class="flex items-center gap-3">
+<span class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-primary material-symbols-outlined">vertical_align_top</span>
+<span class="font-bold text-sm">垂直跳び</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="font-headline font-black">82 cm</span>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- 2. 20mスプリント -->
+<div class="group bg-surface-container-low/50 border border-transparent hover:border-primary/20 rounded-xl transition-all">
+<div class="p-4 flex justify-between items-center cursor-pointer">
+<div class="flex items-center gap-3">
+<span class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-primary material-symbols-outlined">timer</span>
+<span class="font-bold text-sm">20mスプリント</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="font-headline font-black">2.9 s</span>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- 3. 握力 -->
+<div class="group bg-surface-container-low/50 border border-transparent hover:border-primary/20 rounded-xl transition-all">
+<div class="p-4 flex justify-between items-center cursor-pointer">
+<div class="flex items-center gap-3">
+<span class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-primary material-symbols-outlined">front_hand</span>
+<span class="font-bold text-sm">握力 (右/左)</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="font-headline font-black">58/55 kg</span>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- 4. 反復横跳び -->
+<div class="group bg-surface-container-low/50 border border-transparent hover:border-primary/20 rounded-xl transition-all">
+<div class="p-4 flex justify-between items-center cursor-pointer">
+<div class="flex items-center gap-3">
+<span class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-primary material-symbols-outlined">swap_horiz</span>
+<span class="font-bold text-sm">反復横跳び</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="font-headline font-black">64 回</span>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- 5. 長座体前屈 -->
+<div class="group bg-surface-container-low/50 border border-transparent hover:border-primary/20 rounded-xl transition-all">
+<div class="p-4 flex justify-between items-center cursor-pointer">
+<div class="flex items-center gap-3">
+<span class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-primary material-symbols-outlined">straighten</span>
+<span class="font-bold text-sm">長座体前屈</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="font-headline font-black">52 cm</span>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- 6. 立ち幅跳び -->
+<div class="group bg-surface-container-low/50 border border-transparent hover:border-primary/20 rounded-xl transition-all">
+<div class="p-4 flex justify-between items-center cursor-pointer">
+<div class="flex items-center gap-3">
+<span class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-primary material-symbols-outlined">directions_run</span>
+<span class="font-bold text-sm">立ち幅跳び</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="font-headline font-black">275 cm</span>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- 7. プロアジリティ -->
+<div class="group bg-surface-container-low/50 border border-transparent hover:border-primary/20 rounded-xl transition-all">
+<div class="p-4 flex justify-between items-center cursor-pointer">
+<div class="flex items-center gap-3">
+<span class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-primary material-symbols-outlined">bolt</span>
+<span class="font-bold text-sm">プロアジリティ</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="font-headline font-black">4.25 s</span>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- 8. シャトルラン -->
+<div class="group bg-surface-container-low/50 border border-transparent hover:border-primary/20 rounded-xl transition-all">
+<div class="p-4 flex justify-between items-center cursor-pointer">
+<div class="flex items-center gap-3">
+<span class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-primary material-symbols-outlined">repeat</span>
+<span class="font-bold text-sm">シャトルラン</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="font-headline font-black">125 回</span>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-surface-container-lowest rounded-lg p-8 shadow-[0_20px_40px_rgba(30,58,138,0.06)]">
+<h3 class="font-headline text-xl font-bold flex items-center gap-2 mb-8">
+<span class="material-symbols-outlined text-primary">forum</span>
+                    選手への課題コメント
+                </h3>
+<textarea class="w-full h-40 bg-surface-container-low border-none rounded-xl p-4 font-body focus:ring-2 focus:ring-primary focus:bg-white transition-all outline-none" placeholder="選手への具体的なフィードバックを入力してください..."></textarea>
+<div class="mt-4 flex justify-end">
+<button class="bg-gradient-to-br from-primary to-primary-container text-white px-10 py-3 rounded-full font-headline font-bold text-lg hover:scale-105 transition-transform shadow-lg shadow-primary/20">
+                        データを送信・更新
+                    </button>
+</div>
+</section>
+</div>
+<!-- Right Column -->
+<div class="space-y-8">
+<!-- Match Performance -->
+<section class="bg-surface-container-lowest rounded-lg p-8 shadow-[0_20px_40px_rgba(30,58,138,0.06)]">
+<h3 class="font-headline text-xl font-bold flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary">sports_basketball</span>
+                    試合評価
+                </h3>
+<div class="grid grid-cols-2 gap-4">
+<div class="text-center p-4 bg-surface-container-low rounded-xl border border-outline-variant/10">
+<p class="text-[10px] font-label uppercase text-on-surface-variant font-bold">得点 Avg</p>
+<p class="text-2xl font-black text-secondary">24.5</p>
+</div>
+<div class="text-center p-4 bg-surface-container-low rounded-xl border border-outline-variant/10">
+<p class="text-[10px] font-label uppercase text-on-surface-variant font-bold">アシスト Avg</p>
+<p class="text-2xl font-black text-secondary">8.2</p>
+</div>
+</div>
+</section>
+<!-- Management Status (COACH ONLY) -->
+<section class="bg-secondary text-on-secondary rounded-xl p-8 shadow-[0_20px_40px_rgba(30,58,138,0.06)] relative overflow-hidden">
+<div class="absolute top-0 right-0 w-24 h-24 bg-white/5 rounded-full -mr-12 -mt-12"></div>
+<div class="relative z-10">
+<h3 class="font-headline text-lg font-bold flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined">visibility_off</span>
+                        管理専用ステータス
+                    </h3>
+<div class="space-y-3">
+<div class="flex items-center justify-between border-b border-white/10 pb-2">
+<span class="text-xs font-label">契約更新ステータス</span>
+<span class="text-xs bg-white/20 px-2 py-0.5 rounded-full uppercase font-bold">交渉中</span>
+</div>
+<div class="flex items-center justify-between border-b border-white/10 pb-2">
+<span class="text-xs font-label">移籍市場評価</span>
+<span class="text-xs font-bold text-tertiary-fixed">High Demand</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-xs font-label">最終面談日</span>
+<span class="text-xs font-bold">2024.05.12</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-slate-50/70 dark:bg-slate-900/70 backdrop-blur-xl rounded-t-[3rem] shadow-[0_-20px_40px_rgba(30,58,138,0.06)]">
+<a class="flex flex-col items-center justify-center bg-orange-600/10 dark:bg-orange-500/20 text-orange-700 dark:text-orange-400 rounded-full px-5 py-2" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-body text-[10px] font-bold uppercase tracking-widest">選手管理</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-5 py-2 hover:text-orange-600 dark:hover:text-orange-400 transition-colors" href="#">
+<span class="material-symbols-outlined">home_app_logo</span>
+<span class="font-body text-[10px] font-bold uppercase tracking-widest">ホーム</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-5 py-2 hover:text-orange-600 dark:hover:text-orange-400 transition-colors" href="#">
+<span class="material-symbols-outlined">local_library</span>
+<span class="font-body text-[10px] font-bold uppercase tracking-widest">ライブラリ</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-5 py-2 hover:text-orange-600 dark:hover:text-orange-400 transition-colors" href="#">
+<span class="material-symbols-outlined">dynamic_feed</span>
+<span class="font-body text-[10px] font-bold uppercase tracking-widest">練習フィード</span>
+</a>
+</nav>
+</body></html>
